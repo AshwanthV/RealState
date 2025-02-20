@@ -4,10 +4,20 @@ import {SafeAreaView} from 'react-native-safe-area-context'
 
 import images from '@/constants/images'
 import icons from '@/constants/icons'
+import {login} from "@/lib/appwrite"
+import {tls} from "node-forge";
+import Alert = module
 
 
 const SignIn = () => {
-    const handleLogin = () => {};
+    const handleLogin = async() => {
+        const result = await login();
+        if (result) {
+            console.log('Login Success');
+        } else {
+            Alert.alert('Error', 'Failed to login');
+        }
+    };
     return (
         <SafeAreaView className="bg-white h-full">
             <ScrollView contentContainerClassName="h-full">
